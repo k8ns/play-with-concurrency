@@ -26,11 +26,13 @@ func main() {
 func intrementer(s *j.Semaphore, wg *sync.WaitGroup) {
 	defer wg.Done()
 	s.AcquireN(10)
-	for i := 0; i < 1000; i++ {
-		sharedCount++
+
+	for i := 0; i < 10; i++ {
+		for j := 0; j < 100; j++ {
+			sharedCount++
+		}
+		s.ReleaseN(1)
 	}
-	s.ReleaseN(2)
-	s.ReleaseN(8)
 	fmt.Println("exit incr")
 }
 

@@ -25,7 +25,7 @@ func (s *Semaphore) Acquire() {
 func (s *Semaphore) AcquireN(n int32) {
 	for {
 		if atomic.LoadInt32(&s.acquiredCount) == 0 {
-			return
+			break
 		}
 	}
 
