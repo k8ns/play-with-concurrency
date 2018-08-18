@@ -26,8 +26,7 @@ func (f *FeatureImplementation) Get() (interface{}, error) {
 
 	cycle: for {
 		select {
-			case v := <-f.ch:
-				f.val = v
+			case f.val = <-f.ch:
 				f.done = true
 				close(f.ch)
 				break cycle
