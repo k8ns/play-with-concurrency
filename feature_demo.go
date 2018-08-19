@@ -40,8 +40,8 @@ func main() {
 
 
 type CallableOne struct {
-	Value string
-	Sleep time.Duration
+    Value string
+    Sleep time.Duration
 }
 
 
@@ -56,7 +56,7 @@ type CallableTwo struct {
 }
 
 func (c *CallableTwo) Call() (interface{}, error) {
-	time.Sleep(c.Sleep * time.Millisecond)
+    time.Sleep(c.Sleep * time.Millisecond)
 	return c.Value, nil
 }
 
