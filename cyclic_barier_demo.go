@@ -38,7 +38,6 @@ func reachBarrier() {
 
 func sbTest(sb *j.CyclicBarrier, name string, w time.Duration) {
     time.Sleep(w * time.Millisecond)
-    fmt.Println(name)
     sb.Await()
-
+    fmt.Println(name)
 }
