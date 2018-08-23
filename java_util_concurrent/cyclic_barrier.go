@@ -57,7 +57,7 @@ func (cb *CyclicBarrier) Await() {
 func (cb *CyclicBarrier) track() {
     cb.trackLock.Lock()
     cb.count++
-    release := cb.count == 3
+    release := cb.count == cb.numOfRoutines
     if release {
        cb.count = 0
     }
