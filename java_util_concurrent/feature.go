@@ -21,7 +21,7 @@ func (f *FeatureImplementation) IsDone() bool {
 
 func (f *FeatureImplementation) Get() (interface{}, error) {
 
-	if f.val != nil {
+	if f.done {
 		return f.val, nil
 	}
 
