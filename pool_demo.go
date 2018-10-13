@@ -15,7 +15,7 @@ func (i *PoolItem) String() string {
 	return strconv.Itoa(i.Value)
 }
 
-func main() {
+func demo5() {
 
 	pool := &sync.Pool{}
 

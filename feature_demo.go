@@ -8,7 +8,7 @@ import (
 	"errors"
 )
 
-func main() {
+func demo4() {
 
 	executor := j.GetThreadPool()
 

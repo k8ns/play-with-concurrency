@@ -8,7 +8,7 @@ import (
 
 var sharedCount int32
 
-func main() {
+func demo6() {
 	sharedCount = 0
 
 	s := j.NewSemaphore()

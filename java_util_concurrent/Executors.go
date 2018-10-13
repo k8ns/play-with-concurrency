@@ -3,8 +3,8 @@ package java_util_concurrent
 import "errors"
 
 var (
-	NullPointerErr  = errors.New("nil")
-	RejectedExecutionErr  = errors.New("rejected")
+	NullPointerErr       = errors.New("nil")
+	RejectedExecutionErr = errors.New("rejected")
 )
 
 type Runnable interface {
@@ -14,9 +14,6 @@ type Runnable interface {
 type Callable interface {
 	Call() (interface{}, error)
 }
-
-
-
 
 type Executor interface {
 	Execute(r Runnable)
@@ -31,10 +28,7 @@ func GetThreadPool() ExecutorService {
 	return &ExecutorServiceImplementation{}
 }
 
-
-
 type ExecutorServiceImplementation struct {
-
 }
 
 func (s *ExecutorServiceImplementation) Execute(r Runnable) {
@@ -49,7 +43,7 @@ func (s *ExecutorServiceImplementation) Submit(c Callable) (Feature, error) {
 
 	f := &FeatureImplementation{false, nil, make(chan interface{}), make(chan error)}
 
-	go func(){
+	go func() {
 		v, err := c.Call()
 		if err != nil {
 			f.errCh <- err

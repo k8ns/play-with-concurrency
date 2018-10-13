@@ -6,9 +6,9 @@ import (
 
 type Exchanger struct {
 	party int
-	ch1 chan string
-	ch2 chan string
-	lock sync.Locker
+	ch1   chan string
+	ch2   chan string
+	lock  sync.Locker
 }
 
 func NewExchanger() *Exchanger {
@@ -46,7 +46,7 @@ func (e *Exchanger) Exchange(v string) string {
 }
 
 func (e *Exchanger) one(v string) string {
-	go func(){
+	go func() {
 		e.ch1 <- v
 		close(e.ch1)
 	}()

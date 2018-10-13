@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func demo3() {
 
 	exch := j.NewExchanger()
 	wg := &sync.WaitGroup{}

@@ -1,14 +1,14 @@
 package java_util_concurrent
 
 import (
+	"sync"
 	"sync/atomic"
 	"time"
-	"sync"
 )
 
 type Semaphore struct {
 	acquiredCount int32
-	lock *sync.Mutex
+	lock          *sync.Mutex
 }
 
 func NewSemaphore() *Semaphore {
