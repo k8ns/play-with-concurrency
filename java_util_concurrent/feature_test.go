@@ -2,6 +2,7 @@ package java_util_concurrent
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
@@ -32,6 +33,34 @@ func ExampleExecutorAndFeature() {
 	//three
 	//four
 	//five
+
+
+}
+
+func TestExecutorAndFeature(t *testing.T) {
+	executor := GetThreadPool()
+
+	start := time.Now()
+
+	f4, _ := executor.Submit(&CallableObj{"four", 500})
+	f2, _ := executor.Submit(&CallableObj{"two", 500})
+	f5, _ := executor.Submit(&CallableObj{"five", 500})
+	f3, _ := executor.Submit(&CallableObj{"three", 500})
+	f1, _ := executor.Submit(&CallableObj{"one", 500})
+
+	f1.Get()
+	f2.Get()
+	f3.Get()
+	f4.Get()
+	f5.Get()
+
+	duration := time.Now().Sub(start)
+
+
+
+	if duration > time.Millisecond * 550 {
+		t.Error("Call were not running in parallel")
+	}
 
 
 }
