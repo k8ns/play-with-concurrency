@@ -1,24 +1,24 @@
 package java_util_concurrent
 
 import (
-    "fmt"
-    "sync"
-    "time"
+	"fmt"
+	"sync"
+	"time"
 )
 
 func ExampleCyclicBarrier() {
 
-    var wg sync.WaitGroup
-    wg.Add(12)
+	var wg sync.WaitGroup
+	wg.Add(12)
 
 	cb := NewCyclicBarrier(3, func() {
-	    time.Sleep(time.Millisecond * 3)
+		time.Sleep(time.Millisecond * 3)
 		fmt.Println("barrier")
-        wg.Done()
+		wg.Done()
 	})
 
 	cbTestHelper := func(cb *CyclicBarrier) {
-        cb.Await()
+		cb.Await()
 		fmt.Println("action")
 		wg.Done()
 	}
@@ -41,5 +41,5 @@ func ExampleCyclicBarrier() {
 	//action
 	//action
 	//action
-    //barrier
+	//barrier
 }

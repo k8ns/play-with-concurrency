@@ -21,7 +21,6 @@ func NewCountDownLatch(count int32) *CountDownLatch {
 func (c *CountDownLatch) CountDown() {
 	atomic.AddInt32(&c.count, -1)
 	if atomic.LoadInt32(&c.count) == 0 {
-		c.release <- true
 		close(c.release)
 	}
 }

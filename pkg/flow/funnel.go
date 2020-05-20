@@ -9,12 +9,15 @@ func funnel(InA, InB, InC <-chan int, out chan int) {
 
 	for {
 		select {
-		case data, openA = <-InA: open = openA
-		case data, openB = <-InB: open = openB
-		case data, openC = <-InC: open = openC
+		case data, openA = <-InA:
+			open = openA
+		case data, openB = <-InB:
+			open = openB
+		case data, openC = <-InC:
+			open = openC
 		}
 
-		if !openA && !openB && !openC{
+		if !openA && !openB && !openC {
 			break
 		}
 
@@ -27,4 +30,3 @@ func funnel(InA, InB, InC <-chan int, out chan int) {
 
 	close(out)
 }
-

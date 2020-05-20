@@ -1,9 +1,9 @@
 package main
 
 import (
-	"sync"
-	"strconv"
 	"fmt"
+	"strconv"
+	"sync"
 	"time"
 )
 
@@ -22,12 +22,10 @@ func demo5() {
 	go getterFromPool(pool)
 	go adderToPool(pool)
 
-
 	time.Sleep(5 * time.Second)
 
 	fmt.Println("wait")
 }
-
 
 func adderToPool(p *sync.Pool) {
 	for i := 0; i < 30; i++ {

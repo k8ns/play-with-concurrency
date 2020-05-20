@@ -1,8 +1,8 @@
 package flow
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -33,15 +33,9 @@ func main() {
 	//go turnOutfunnel(InA, InB, InC, outA, outB, outC)
 	//go turnOutOut(InA, InB, InC, outA, outB, outC)
 
-
 	//go funnel(InA, InB, InC, outA)
 
-
-
-
 	time.Sleep(100 * time.Millisecond)
-
-
 
 	//close(outA)
 	//close(outB)
@@ -61,12 +55,6 @@ func feedIn(In chan int, start, count int) {
 	}
 	close(In)
 }
-
-
-
-
-
-
 
 func chanListen(c <-chan int, a *[]int) *[]int {
 	for data := range c {

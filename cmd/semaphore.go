@@ -1,29 +1,29 @@
 package main
 
 import (
-	j "play-with-concurrency/java_util_concurrent"
 	"fmt"
+	juc "github.com/ksopin/play-with-concurrency/pkg/java_util_concurrent"
 	"sync"
 )
 
 var sharedCount int32
 
-func demo6() {
+func main() {
 	sharedCount = 0
 
-	s := j.NewSemaphore()
+	s := juc.NewSemaphore()
 
 	wg := &sync.WaitGroup{}
 	wg.Add(2)
 
-	go intrementer(s, wg)
+	go incrementer(s, wg)
 	go decrementer(s, wg)
 
-    wg.Wait()
+	wg.Wait()
 	fmt.Println(sharedCount)
 }
 
-func intrementer(s *j.Semaphore, wg *sync.WaitGroup) {
+func incrementer(s *juc.Semaphore, wg *sync.WaitGroup) {
 	defer wg.Done()
 	s.AcquireN(10)
 
@@ -36,7 +36,7 @@ func intrementer(s *j.Semaphore, wg *sync.WaitGroup) {
 	fmt.Println("exit incr")
 }
 
-func decrementer(s *j.Semaphore, wg *sync.WaitGroup) {
+func decrementer(s *juc.Semaphore, wg *sync.WaitGroup) {
 	defer wg.Done()
 	s.AcquireN(5)
 	for i := 0; i < 1000; i++ {

@@ -18,7 +18,6 @@ func turnOutOut(InA, InB, InC <-chan int, outA, outB, outC chan int) {
 	fmt.Println("exit from turn out (Fun Out version)")
 }
 
-
 func turnOut(InA, InB, InC <-chan int, outA, outB, outC chan int) {
 
 	var data int
@@ -29,9 +28,12 @@ func turnOut(InA, InB, InC <-chan int, outA, outB, outC chan int) {
 
 	for {
 		select {
-		case data, openA = <-InA: open = openA
-		case data, openB = <-InB: open = openB
-		case data, openC = <-InC: open = openC
+		case data, openA = <-InA:
+			open = openA
+		case data, openB = <-InB:
+			open = openB
+		case data, openC = <-InC:
+			open = openC
 		default:
 			fmt.Println("read def")
 			continue

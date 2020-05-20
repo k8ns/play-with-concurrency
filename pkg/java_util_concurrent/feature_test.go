@@ -34,7 +34,6 @@ func ExampleExecutorAndFeature() {
 	//four
 	//five
 
-
 }
 
 func TestExecutorAndFeature(t *testing.T) {
@@ -56,12 +55,9 @@ func TestExecutorAndFeature(t *testing.T) {
 
 	duration := time.Now().Sub(start)
 
-
-
-	if duration > time.Millisecond * 550 {
+	if duration > time.Millisecond*550 {
 		t.Error("Call were not running in parallel")
 	}
-
 
 }
 
@@ -69,7 +65,6 @@ type CallableObj struct {
 	Value string
 	Sleep time.Duration
 }
-
 
 func (c *CallableObj) Call() (interface{}, error) {
 	time.Sleep(c.Sleep * time.Millisecond)

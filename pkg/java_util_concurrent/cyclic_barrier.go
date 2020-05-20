@@ -1,28 +1,28 @@
 package java_util_concurrent
 
 import (
-    "sync"
+	"sync"
 )
 
 type CyclicBarrier struct {
 	numOfRoutines int32
 	action        func()
 
-    lock          sync.Locker
-	chans         []chan bool
+	lock  sync.Locker
+	chans []chan bool
 
-    count         int32
-	trackLock     sync.Locker
+	count     int32
+	trackLock sync.Locker
 }
 
 func NewCyclicBarrier(numOfRoutines int32, action func()) *CyclicBarrier {
 	return &CyclicBarrier{
-        numOfRoutines: numOfRoutines,
-		action: action,
-		count: 0,
-		chans: make([]chan bool, 0),
-		lock: &sync.Mutex{},
-        trackLock: &sync.Mutex{},
+		numOfRoutines: numOfRoutines,
+		action:        action,
+		count:         0,
+		chans:         make([]chan bool, 0),
+		lock:          &sync.Mutex{},
+		trackLock:     &sync.Mutex{},
 	}
 }
 
@@ -51,18 +51,17 @@ func (cb *CyclicBarrier) track() {
 	cb.count++
 	release := cb.count == cb.numOfRoutines
 	if !release {
-	    return
-    }
+		return
+	}
 
 	cb.count = 0
 
-    chRelease := cb.chPop()
-    for _, ch := range chRelease {
-        ch <- true
-        close(ch)
-    }
+	chRelease := cb.chPop()
+	for _, ch := range chRelease {
+		close(ch)
+	}
 
-    cb.action()
+	cb.action()
 }
 
 func (cb *CyclicBarrier) chPop() []chan bool {

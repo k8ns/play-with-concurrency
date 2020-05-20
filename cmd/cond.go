@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sync"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -23,26 +23,17 @@ func main() {
 	cond.Broadcast()
 	cond.Broadcast()
 
-
-
 	cond.Broadcast()
 
 	stop = 1
 
 	cond.Broadcast()
 
-
-
 	time.Sleep(5 * time.Second)
-
-
 
 	fmt.Println("Done")
 
 }
-
-
-
 
 func worker(name string, cond *sync.Cond) {
 	for {

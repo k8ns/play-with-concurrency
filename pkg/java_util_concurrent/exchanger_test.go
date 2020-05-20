@@ -29,8 +29,3 @@ func ExampleStringExchanger() {
 	//one got two
 	//two got one
 }
-
-
-
-
-
